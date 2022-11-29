@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <style>
+        * {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .left {
+            width: 50%;
+            box-shadow: 0px 0px 2px #2b2b2b;
+            padding: 20px;
+        }
+
+        form {
+            width: 90%;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        input, select {
+            height: 40px;
+            border-radius: 5px;
+            border: solid gray 1px;
+            outline: none;
+            padding: 10px;
+        }
+
+        input[type=submit] {
+            background: #b11f1f;
+            color: #eee;
+            cursor: pointer;
+            border: none;
+        }
+
+        .right {
+            border: solid red;
+            padding: 20px;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .card {
+            width: 300px;
+            border-radius: 10px;
+            background: #b11f1f;
+            padding: 10px;
+            color: #eee;
+            
+        }
+
+
+    </style>
+  </head>
+  <body>
+      <h1>Egbe Ifowopamo</h1>
+    <div class="container">
+        <div class="left">
+            <form action="">
+              <input type="text" name="" id="full-name" placeholder="Enter your Full Name" required />
+              <select name="" id="tier" required>
+                <option value="">Select Your Plan</option>
+                <option value="tier-1">Tier 1</option>
+                <option value="tier-2">Tier 2</option>
+                <option value="tier-3">Tier 3</option>
+              </select>
+              <input type="submit" id="reg" value="Register">
+            </form>
+        </div>
+
+        <div class="right">
+            <div id="welcome">Welcome, <span id="rider-name"></span></div>
+            <div id="expected" class="card">
+                <h5>Expected Deposit</h5>
+                <div id="exp-amt"></div>
+            </div>
+            <div id="interest" class="card">
+                <h5>Your Interest</h5>
+                <div id="exp-int"></div>
+            </div>
+            <div id="balance" class="card">
+                <h5>Your Balance</h5>
+                <div id="bal">0</div>
+            </div>
+
+            <div id="total" class="card">
+                <h5>Total</h5>
+                <div id="tot-amt">0</div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        const nameField = document.getElementById('full-name')
+        const subtmitBtn = document.getElementById('reg')
+        const tier = document.querySelector('select')
+        const myForm = document.querySelector('form')
+        const clientName = document.getElementById('rider-name')
+        const deposit = document.getElementById('exp-amt')
+        const Interest = document.getElementById('exp-int')
+        const Balance = document.getElementById('bal')
+        const Total = document.getElementById('tot-amt')
+
+        
+
+        function myFunc(e) {
+            e.preventDefault()
+            clientName.textContent = nameField.value;
+            if (tier.value == "tier-1") {
+                deposit.textContent = 10000
+                Interest.textContent = 0.07 * parseInt(deposit.textContent)
+            } else if (tier.value == "tier-2") {
+                deposit.textContent = 20000
+                Interest.textContent = 0.12 * parseInt(deposit.textContent)
+            } else if (tier.value == "tier-3") {
+                deposit.textContent = 30000
+                Interest.textContent = 0.25 * parseInt(deposit.textContent)
+            }
+
+            nameField.value = ''
+            tier.value = ''
+        }
+
+        subtmitBtn.addEventListener('click', myFunc)
+
+        
+
+    </script>
+  </body>
+</html>
